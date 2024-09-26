@@ -4,13 +4,38 @@ import EditEmployeeModal from './EditEmployeeModal';
 import '../styles/EmployeeList.css';
 
 const EmployeeList = ({ employees, handleDelete, refreshEmployeeList }) => {
-  const [selectedEmployee, setSelectedEmployee] = useState(null); // Initialize the selected employee state
-  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState(null); // Selected employee for editing
+  const [showEditModal, setShowEditModal] = useState(false); // Show/Hide edit modal
+  const [sortOrder, setSortOrder] = useState('asc'); // Track sorting order (asc or desc)
+  const [sortedEmployees, setSortedEmployees] = useState(employees); // Store sorted employees
 
+  // Handle clicking the edit button for a specific employee
   const handleEditClick = (employee) => {
-    setSelectedEmployee(employee); // Set the selected employee for editing
-    setShowEditModal(true); // Open the edit modal
+    setSelectedEmployee(employee);
+    setShowEditModal(true);
   };
+
+  // Handle sorting employees by name
+  const handleSortByName = () => {
+    const sorted = [...sortedEmployees].sort((a, b) => {
+      const nameA = a.username.toLowerCase();
+      const nameB = b.username.toLowerCase();
+
+      if (sortOrder === 'asc') {
+        return nameA > nameB ? 1 : -1;
+      } else {
+        return nameA < nameB ? 1 : -1;
+      }
+    });
+
+    setSortedEmployees(sorted);
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc'); // Toggle sort order
+  };
+
+  // Update sortedEmployees when employees prop changes
+  React.useEffect(() => {
+    setSortedEmployees(employees);
+  }, [employees]);
 
   return (
     <div className="employee-list">
@@ -20,7 +45,9 @@ const EmployeeList = ({ employees, handleDelete, refreshEmployeeList }) => {
           <tr>
             <th>ID</th>
             <th>Image</th>
-            <th>Name</th>
+            <th onClick={handleSortByName} style={{ cursor: 'pointer' }}>
+              Name {sortOrder === 'asc' ? '▲' : '▼'} {/* Indicate sort order */}
+            </th>
             <th>Email</th>
             <th>Mobile No.</th>
             <th>Designation</th>
@@ -31,9 +58,9 @@ const EmployeeList = ({ employees, handleDelete, refreshEmployeeList }) => {
           </tr>
         </thead>
         <tbody>
-          {employees.map((employee) => (
+          {sortedEmployees.map((employee) => (
             <tr key={employee._id}>
-              <td>{employee.employeeId}</td> 
+              <td>{employee.employeeId}</td>
               <td>
                 <img
                   src={employee.image || '/path/to/default/image.png'}
@@ -50,10 +77,17 @@ const EmployeeList = ({ employees, handleDelete, refreshEmployeeList }) => {
               <td>{new Date(employee.joiningDate).toLocaleDateString()}</td>
               <td>
                 <div className="action-buttons">
-                  <Button variant="light" className="mr-2" onClick={() => handleEditClick(employee)}>
+                  <Button
+                    variant="light"
+                    className="mr-2"
+                    onClick={() => handleEditClick(employee)}
+                  >
                     Edit
                   </Button>
-                  <Button variant="dark" onClick={() => handleDelete(employee._id)}>
+                  <Button
+                    variant="dark"
+                    onClick={() => handleDelete(employee._id)}
+                  >
                     Delete
                   </Button>
                 </div>
@@ -68,7 +102,7 @@ const EmployeeList = ({ employees, handleDelete, refreshEmployeeList }) => {
         <EditEmployeeModal
           show={showEditModal}
           handleClose={() => setShowEditModal(false)}
-          employee={selectedEmployee} // Pass selected employee to the modal
+          employee={selectedEmployee}
           refreshEmployeeList={refreshEmployeeList}
         />
       )}
