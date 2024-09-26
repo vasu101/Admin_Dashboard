@@ -41,7 +41,7 @@ const AddEmployeeModal = ({ show, handleClose, refreshEmployeeList }) => {
     try {
         const response = await axiosInstance.post('/api/employee/add', employeeData);
         setSuccessMessage('Employee added successfully!');
-        refreshEmployeeList(); // Refresh the employee list in the parent component
+        refreshEmployeeList(); 
         resetForm();
     } catch (error) {
         console.error('Error adding employee:', error);

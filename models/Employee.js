@@ -11,7 +11,7 @@ const employeeSchema = new mongoose.Schema({
     image: { type: String },
     joiningDate: { type: Date, default: Date.now },
 });
-// Auto-increment employeeId
+
 employeeSchema.pre('save', async function (next) {
     if (!this.isNew) return next();
 

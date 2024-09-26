@@ -7,13 +7,11 @@ router.post('/add', async (req, res) => {
     const { username, email, mobile, designation, gender, course, image } = req.body;
 
     try {
-        // Check if an employee with the same email already exists
         const existingEmployee = await Employee.findOne({ email });
         if (existingEmployee) {
             return res.status(400).json({ message: 'Employee with this email already exists' });
         }
 
-        // Create a new employee
         const newEmployee = new Employee({
             username,
             email,
@@ -57,11 +55,10 @@ router.put('/:id', async (req, res) => {
     const { username, email, mobile, designation, gender, course, image } = req.body;
   
     try {
-      // Find the employee by ID and update their details
       const updatedEmployee = await Employee.findByIdAndUpdate(
         req.params.id,
         { username, email, mobile, designation, gender, course, image },
-        { new: true } // Return the updated employee data
+        { new: true } 
       );
   
       if (!updatedEmployee) {

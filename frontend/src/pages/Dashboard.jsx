@@ -7,7 +7,7 @@ import '../styles/Dashboard.css';
 
 const Dashboard = ({ username }) => {
   const [employees, setEmployees] = useState([]);
-  const [filteredEmployees, setFilteredEmployees] = useState([]); // To store filtered employees based on search
+  const [filteredEmployees, setFilteredEmployees] = useState([]); 
   const [showModal, setShowModal] = useState(false);
   const employeeListRef = useRef(null);
 
@@ -16,7 +16,7 @@ const Dashboard = ({ username }) => {
     try {
       const response = await axiosInstance.get('api/employee/show');
       setEmployees(response.data);
-      setFilteredEmployees(response.data); // Initially, set filtered employees to all employees
+      setFilteredEmployees(response.data); 
     } catch (error) {
       console.error('Error fetching employee:', error);
     }
@@ -30,7 +30,7 @@ const Dashboard = ({ username }) => {
   const handleDelete = async (id) => {
     try {
       await axiosInstance.delete(`api/employee/${id}`);
-      fetchEmployees(); // Fetch employees again after deleting one
+      fetchEmployees(); 
     } catch (error) {
       console.error('Error deleting employee:', error);
     }
@@ -39,13 +39,13 @@ const Dashboard = ({ username }) => {
   // Handle searching for employees
   const handleSearch = (searchTerm) => {
     if (searchTerm === '') {
-      setFilteredEmployees(employees); // If no search term, reset to full list
+      setFilteredEmployees(employees);
     } else {
       const filtered = employees.filter(employee =>
         employee.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
         employee.email.toLowerCase().includes(searchTerm.toLowerCase())
       );
-      setFilteredEmployees(filtered); // Update filtered employees
+      setFilteredEmployees(filtered); 
     }
   };
 
@@ -62,7 +62,7 @@ const Dashboard = ({ username }) => {
       <Header 
         isLoggedIn={true} 
         username={username} 
-        handleSearch={handleSearch} // Pass search handler to Header
+        handleSearch={handleSearch} 
       />
 
       <div className="welcome-message">

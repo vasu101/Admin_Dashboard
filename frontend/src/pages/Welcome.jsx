@@ -3,12 +3,11 @@ import { Form, Button, Alert, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'; 
 import '../styles/Welcome.css';
 import axiosInstance from '../axiosInstance.js';
-// import '../components/Register.jsx';
 
 const Welcome = ({ onLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [username, setUsername] = useState(''); // Added state for username
+  const [username, setUsername] = useState('');
   const [error, setError] = useState('');
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
@@ -26,7 +25,7 @@ const Welcome = ({ onLogin }) => {
     try {
       const response = await axiosInstance.post('/api/auth/login', { email, password });
       console.log('Login successful', response.data);
-      onLogin(response.data.username); // Adjust based on your response structure
+      onLogin(response.data.username);
       navigate('/dashboard');
     } catch (error) {
       console.error('Login error:', error);
@@ -55,8 +54,7 @@ const Welcome = ({ onLogin }) => {
 
   return (
     <div className="welcome-container">
-      <header>
-        <div className="overlay">
+        <div>
           <h1>Welcome</h1>
           <h3>Please Log in or Register</h3>
           <div className="button-container">
@@ -68,7 +66,6 @@ const Welcome = ({ onLogin }) => {
           </Button>
           </div>
         </div>
-      </header>
 
       {/* Login Modal */}
       <Modal show={showLogin} onHide={() => setShowLogin(false)}>

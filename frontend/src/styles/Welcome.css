@@ -5,46 +5,17 @@
 }
 
 body {
-  margin: 0; /* Ensure there is no margin on the body */
-  width: 100%; /* Take full width */
-  height: 100%; /* Ensure full height */
+  margin: 0;
+  width: 100%; 
+  height: 100%;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-header {
-  background: black;
-  text-align: center;
-  width: 100%;
-  height: auto;
-  background-size: cover;
-  background-attachment: fixed;
-  position: relative;
-  overflow: hidden;
-  border-radius: 0 0 85% 85% / 30%;
-}
-
-header .overlay {
-  /* width: 100%;
-  height: 100%;
-  padding: 50px;
-  color: #FFF;
-  text-shadow: 1px 1px 1px #333;
-  background-image: linear-gradient(135deg, #9f05ff69 10%, #fd5e086b 100%); */
-  height: 100vh; /* Full viewport height */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Center the content vertically */
-    align-items: center; /* Center the content horizontally */
-    background-image: linear-gradient(135deg, #9f05ff69 10%, #fd5e086b 100%);
-    color: white; /* Set text color for visibility */
-    text-align: center; /* Center text */
-}
-
 h1 {
   font-family: 'Open Sans', sans-serif;
-  font-size: 60px; /* Adjusted for better visibility */
+  font-size: 60px;
   margin-bottom: 20px;
 }
 
@@ -73,36 +44,36 @@ button:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%; /* Full width */
-  padding: 20px; /* Adjust padding as necessary */
+  width: 100%;
+  padding: 20px;
 }
 
 .login-form-container {
-  max-width: 400px; /* Limit the width of the login form */
-  width: 100%; /* Make form responsive */
-  margin: 20px auto; /* Center the form */
-  padding: 20px; /* Add padding */
-  background-color: white; /* Background for the form */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  max-width: 400px;
+  width: 100%;
+  margin: 20px auto; 
+  padding: 20px; 
+  background-color: white; 
+  border-radius: 8px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
 .login-title {
-  margin-bottom: 20px; /* Spacing below title */
-  text-align: center; /* Center the title */
+  margin-bottom: 20px; 
+  text-align: center;
 }
 .action-button {
   border: none;
   border-radius: 5px;
-  padding: 10px 20px; /* Button padding */
-  margin: 10px; /* Space between buttons */
-  background-color: white; /* White background for buttons */
-  color: #333; /* Text color for buttons */
-  font-size: 1rem; /* Font size for buttons */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: background-color 0.3s, transform 0.3s; /* Transition for hover effects */
+  padding: 10px 20px; 
+  margin: 10px;
+  background-color: white; 
+  color: #333; 
+  font-size: 1rem;
+  cursor: pointer; 
+  transition: background-color 0.3s, transform 0.3s; 
 }
 .action-button:hover {
-  background-color: #f1f1f1; /* Light gray on hover */
-  transform: scale(1.05); /* Slightly enlarge on hover */
+  background-color: #f1f1f1; 
+  transform: scale(1.05); 
 }
