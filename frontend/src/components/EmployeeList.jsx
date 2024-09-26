@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
+import EditEmployeeModal from './EditEmployeeModal';
+import '../styles/EmployeeList.css';
 
-const EmployeeList = ({ employees, handleDelete }) => {
+const EmployeeList = ({ employees, handleDelete, refreshEmployeeList }) => {
+  const [selectedEmployee, setSelectedEmployee] = useState(null); // Initialize the selected employee state
+  const [showEditModal, setShowEditModal] = useState(false);
+
+  const handleEditClick = (employee) => {
+    setSelectedEmployee(employee); // Set the selected employee for editing
+    setShowEditModal(true); // Open the edit modal
+  };
+
   return (
     <div className="employee-list">
       <h2>Employee List</h2>
@@ -23,7 +33,7 @@ const EmployeeList = ({ employees, handleDelete }) => {
         <tbody>
           {employees.map((employee) => (
             <tr key={employee._id}>
-              <td>{employee._id}</td> 
+              <td>{employee.employeeId}</td> 
               <td>
                 <img
                   src={employee.image || '/path/to/default/image.png'}
@@ -38,14 +48,30 @@ const EmployeeList = ({ employees, handleDelete }) => {
               <td>{employee.gender}</td>
               <td>{employee.course}</td>
               <td>{new Date(employee.joiningDate).toLocaleDateString()}</td>
-              <td variant="grid gap-0 column-gap-3">
-                <Button variant="light" onClick={() => console.log(`Edit ${employee._id}`)}>Edit</Button>
-                <Button variant="dark" onClick={() => handleDelete(employee._id)}>Delete</Button>
+              <td>
+                <div className="action-buttons">
+                  <Button variant="light" className="mr-2" onClick={() => handleEditClick(employee)}>
+                    Edit
+                  </Button>
+                  <Button variant="dark" onClick={() => handleDelete(employee._id)}>
+                    Delete
+                  </Button>
+                </div>
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
+
+      {/* Edit Employee Modal */}
+      {selectedEmployee && (
+        <EditEmployeeModal
+          show={showEditModal}
+          handleClose={() => setShowEditModal(false)}
+          employee={selectedEmployee} // Pass selected employee to the modal
+          refreshEmployeeList={refreshEmployeeList}
+        />
+      )}
     </div>
   );
 };

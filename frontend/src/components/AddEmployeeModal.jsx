@@ -108,7 +108,7 @@ const AddEmployeeModal = ({ show, handleClose, refreshEmployeeList }) => {
           <Form.Group controlId="formMobile">
             <Form.Label>Mobile No.</Form.Label>
             <Form.Control
-              type="text"
+              type="number"
               name="mobile"
               value={employeeData.mobile}
               onChange={handleChange}
@@ -126,28 +126,44 @@ const AddEmployeeModal = ({ show, handleClose, refreshEmployeeList }) => {
               required
             >
               <option value="">Select...</option>
-              <option value="Developer">Developer</option>
-              <option value="Designer">Designer</option>
+              <option value="HR">HR</option>
               <option value="Manager">Manager</option>
+              <option value="Sales">Sales</option>
             </Form.Control>
           </Form.Group>
 
           <Form.Group controlId="formGender">
-            <Form.Label>Gender</Form.Label>
-            <Form.Control
-              as="select"
-              name="gender"
-              value={employeeData.gender}
-              onChange={handleChange}
-              required
-            >
-              <option value="">Select...</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-            </Form.Control>
-          </Form.Group>
-
+              <Form.Label>Gender</Form.Label>
+              <div className="gender-radio-group">
+                <Form.Check
+                  type="radio"
+                  label="Male"
+                  name="gender"
+                  value="Male"
+                  checked={employeeData.gender === 'Male'}
+                  onChange={handleChange}
+                  required
+                />
+                <Form.Check
+                  type="radio"
+                  label="Female"
+                  name="gender"
+                  value="Female"
+                  checked={employeeData.gender === 'Female'}
+                  onChange={handleChange}
+                  required
+                />
+                <Form.Check
+                  type="radio"
+                  label="Other"
+                  name="gender"
+                  value="Other"
+                  checked={employeeData.gender === 'Other'}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </Form.Group>
           <Form.Group controlId="formCourse">
             <Form.Label>Course</Form.Label>
             <Form.Control
@@ -158,9 +174,9 @@ const AddEmployeeModal = ({ show, handleClose, refreshEmployeeList }) => {
               required
             >
               <option value="">Select...</option>
-              <option value="B.Tech">B.Tech</option>
-              <option value="M.Tech">M.Tech</option>
-              <option value="MBA">MBA</option>
+              <option value="MCA">MCA</option>
+              <option value="BCA">BCA</option>
+              <option value="BSC">BSC</option>
             </Form.Control>
           </Form.Group>
 
@@ -173,7 +189,7 @@ const AddEmployeeModal = ({ show, handleClose, refreshEmployeeList }) => {
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="dark mt-2" type="submit">
             Add Employee
           </Button>
         </Form>

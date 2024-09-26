@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const employeeSchema = new mongoose.Schema({
+    employeeId: { type: Number, unique: true },
     username: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     mobile: { type: String, required: true },
@@ -8,8 +9,17 @@ const employeeSchema = new mongoose.Schema({
     gender: { type: String, required: true },
     course: { type: String, required: true },
     image: { type: String },
-    joiningDate: { type: Date, default: Date.now }, // Automatically set to current date
+    joiningDate: { type: Date, default: Date.now },
+});
+// Auto-increment employeeId
+employeeSchema.pre('save', async function (next) {
+    if (!this.isNew) return next();
+
+    const lastEmployee = await Employee.findOne().sort({ employeeId: -1 });
+    this.employeeId = lastEmployee ? lastEmployee.employeeId + 1 : 1;
+
+    next();
 });
 
-// If using auto-incrementing IDs, consider using a plugin like mongoose-sequence
-module.exports = mongoose.model('Employee', employeeSchema);
+const Employee = mongoose.model('Employee', employeeSchema);
+module.exports = Employee;

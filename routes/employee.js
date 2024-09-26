@@ -24,11 +24,9 @@ router.post('/add', async (req, res) => {
             image,
         });
 
-        // Save employee to the database
         await newEmployee.save();
 
-        // Respond with the newly created employee's data
-        res.status(201).json(newEmployee); // Returning the new employee object
+        res.status(201).json(newEmployee); 
     } catch (error) {
         console.error('Error adding employee:', error);
         res.status(500).json({ message: 'Error adding employee', error: error.message });
@@ -54,5 +52,28 @@ router.delete('/:id', async (req, res) => {
         res.status(500).json({ message: 'Error deleting employee', error });
     }
 });
+// Route to update an existing employee
+router.put('/:id', async (req, res) => {
+    const { username, email, mobile, designation, gender, course, image } = req.body;
+  
+    try {
+      // Find the employee by ID and update their details
+      const updatedEmployee = await Employee.findByIdAndUpdate(
+        req.params.id,
+        { username, email, mobile, designation, gender, course, image },
+        { new: true } // Return the updated employee data
+      );
+  
+      if (!updatedEmployee) {
+        return res.status(404).json({ message: 'Employee not found' });
+      }
+  
+      res.status(200).json({ message: 'Employee updated successfully', employee: updatedEmployee });
+    } catch (error) {
+      console.error('Error updating employee:', error);
+      res.status(500).json({ message: 'Error updating employee', error: error.message });
+    }
+  });
+  
 
 module.exports = router;

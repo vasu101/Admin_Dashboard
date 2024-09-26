@@ -2,18 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Header.css';
 
-const Header = ({ isLoggedIn, username, onLogout }) => {
+const Header = ({ isLoggedIn, username, onLogout, handleSearch }) => {
   return (
     <header className="header">
       <div className="logo">Logo</div>
       <nav>
         <Link to="/" className="nav-item">Home</Link>
-        <input type="text" placeholder="Search..." className="search" />
+        <input 
+          type="text" 
+          placeholder="Search..." 
+          className="search" 
+          onChange={(e) => handleSearch(e.target.value)}
+        />
       </nav>
       {isLoggedIn && (
         <div className="user-info">
           <span>{username}</span>
-          <button onClick={onLogout} className="logout-button">Logout</button>
+          <button onClick={onLogout} className="logout-button"><Link to="/" className="nav-item">Log Out</Link></button>
         </div>
       )}
     </header>
