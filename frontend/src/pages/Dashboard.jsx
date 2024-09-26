@@ -9,6 +9,7 @@ const Dashboard = ({ username }) => {
   const [employees, setEmployees] = useState([]);
   const [filteredEmployees, setFilteredEmployees] = useState([]); 
   const [showModal, setShowModal] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const employeeListRef = useRef(null);
 
   // Fetch employees from API
@@ -49,20 +50,20 @@ const Dashboard = ({ username }) => {
     }
   };
 
-  // Scroll to employee list section
   const scrollToEmployeeList = () => {
     if (employeeListRef.current) {
       employeeListRef.current.scrollIntoView({ behavior: 'smooth' });
+      setShowSearch(true);
     }
   };
 
   return (
     <div className="dashboard">
-      {/* Header with search functionality */}
       <Header 
         isLoggedIn={true} 
         username={username} 
-        handleSearch={handleSearch} 
+        handleSearch={handleSearch}
+        showSearch={showSearch}
       />
 
       <div className="welcome-message">

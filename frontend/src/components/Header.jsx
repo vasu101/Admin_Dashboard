@@ -13,12 +13,14 @@ const Header = ({ isLoggedIn, username, onLogout, handleSearch }) => {
       {isLoggedIn && (
         <div className="user-info">
           <span>{username}</span>
-          <input 
-          type="text" 
-          placeholder="Search..." 
-          className="search" 
-          onChange={(e) => handleSearch(e.target.value)}
-        />
+          {showSearch && ( 
+            <input 
+              type="text" 
+              placeholder="Search..." 
+              className="search" 
+              onChange={(e) => handleSearch(e.target.value)}
+            />
+          )}
           <button onClick={onLogout} className="logout-button"><Link to="/" className="nav-item">Log Out</Link></button>
         </div>
       )}
