@@ -36,26 +36,43 @@ This is a **MERN (MongoDB, Express.js, React.js, Node.js)** stack-based **Admin 
 
 ## Project Structure
 
-project-root
-├── ├── routes/
-│   │   └── employee.js      # API routes for employee management
-│   ├── models/
-│   │   └── Employee.js      # Mongoose schema for employees
-│   ├── server.js            # Main backend server file
-│   └── package.json         # Backend dependencies
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Header.jsx         # Header with search functionality
-│   │   │   ├── EmployeeList.jsx   # Employee list table
-│   │   │   ├── AddEmployeeModal.jsx # Modal for adding employees
-│   │   │   └── EditEmployeeModal.jsx # Modal for editing employees
-│   │   ├── pages/
-│   │   │   └── Dashboard.jsx      # Dashboard with employee functionalities
-│   │   ├── styles/
-│   │   │   └── Dashboard.css      # CSS for dashboard
-│   │   └── App.js                 # Main React App component
-│   └── package.json               # Frontend dependencies
+```bash
+Admin_Dashboard (root)
+├── server.js
+├── package.json
+├── Middleware
+│   └── authMiddleware.js
+├── models
+│   ├── Employee.js
+│   └── User.js
+├── routes
+│   ├── auth.js
+│   └── employee.js
+├── frontend
+│   ├── components
+│   │   ├── AddEmployeeModal.jsx
+│   │   ├── EditEmployeeModal.jsx
+│   │   ├── Footer.jsx
+│   │   ├── Header.jsx
+│   │   └── Register.jsx
+│   ├── pages
+│   │   ├── Dashboard.jsx
+│   │   ├── LoginPage.jsx
+│   │   └── Welcome.jsx
+│   ├── styles
+│   │   ├── Dashboard.css
+│   │   ├── EmployeeList.css
+│   │   ├── Footer.css
+│   │   ├── Header.css
+│   │   ├── Login.css
+│   │   └── Welcome.css
+├── App.jsx
+├── axiosInstance.js
+├── App.css
+├── index.css
+├── main.jsx
+└── package.json
+```
 
 
 ## Prerequisite
