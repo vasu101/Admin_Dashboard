@@ -1,0 +1,31 @@
+.login-wrapper {
+  display: flex;
+  justify-content: center; /* Can keep this if you want centered content */
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  width: 100%; /* Ensure it takes full width */
+  box-sizing: border-box; /* Include padding in width calculations */
+} 
+  .login-form-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: #fff;
+  }
+  
+  .login-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .login-form {
+    margin-bottom: 15px;
+  }
+  
+  .login-button {
+    width: 100%;
+  }
+  

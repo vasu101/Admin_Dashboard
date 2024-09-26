@@ -1,0 +1,48 @@
+.dashboard {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .welcome-message {
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the content vertically */
+    align-items: center; /* Center the content horizontally */
+    background-image: linear-gradient(135deg, #9f05ff69 10%, #fd5e086b 100%);
+    color: white; /* Set text color for visibility */
+    text-align: center; /* Center text */
+  }
+  
+  .welcome-message h1 {
+    font-size: 3rem; /* Adjust font size */
+    margin: 0; /* Remove margin */
+  }
+  
+  .button-container {
+    margin-top: 20px; /* Space between title and buttons */
+  }
+  
+  .action-button {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px; /* Button padding */
+    margin: 10px; /* Space between buttons */
+    background-color: white; /* White background for buttons */
+    color: #333; /* Text color for buttons */
+    font-size: 1rem; /* Font size for buttons */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, transform 0.3s; /* Transition for hover effects */
+  }
+  
+  .action-button:hover {
+    background-color: #f1f1f1; /* Light gray on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+  }
+  
+  .employee-list {
+    padding: 20px;
+    background-color: #ffffff; /* White background for the employee list */
+    color: #333; /* Text color for the employee list */
+  }
+  
